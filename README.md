@@ -1,0 +1,1 @@
+# Attitude Estimation Library using Direct cosine matrix, Euler angles and quaternions in c++
