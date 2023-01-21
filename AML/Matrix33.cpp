@@ -63,17 +63,6 @@ namespace AML {
 		m32 = m32_temp;
 		m33 = m33_temp;
 
-		//for(int i = 0; i < 3; i++){
-		//	for(int j = 0; j < 3; j++){
-		//		for(int k = 0; k < 3; k++){
-		//			if(k == 0) 
-		//				data[i][j] = data[i][k] * rhs.data[k][j];
-		//			else	 
-		//		  		data[i][j] += data[i][k] * rhs.data[k][j];
-		//		}
-		//	}
-		//}
-
 		return *this;
 	}
 	Matrix33& Matrix33::operator/=(const Matrix33 &rhs){
