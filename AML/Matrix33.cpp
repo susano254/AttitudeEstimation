@@ -22,9 +22,9 @@ namespace AML {
 	  m21(data[3]), m22(data[4]), m23(data[5]),
 	  m31(data[6]), m32(data[7]), m33(data[8]) {}
 	Matrix33::Matrix33(const Vector3 v1, const Vector3 v2, const Vector3 v3)
-	: m11(v1.x), m12(v1.y), m13(v1.z),
-	  m21(v2.x), m22(v2.y), m23(v2.z),
-	  m31(v3.x), m32(v3.y), m33(v3.z) {}
+	: m11(v1.x), m12(v2.x), m13(v3.x),
+	  m21(v1.y), m22(v2.y), m23(v3.y),
+	  m31(v1.z), m32(v2.z), m33(v3.z) {}
 
 
 	//operator assignment (Matrix)
@@ -101,7 +101,7 @@ namespace AML {
 	}
 
 	//special object
-	static const Matrix33 identity(){
+	const Matrix33 Matrix33::identity(){
 		return Matrix33(Vector3::xAxis(), Vector3::yAxis(), Vector3::zAxis());
 	}
 
@@ -185,15 +185,25 @@ namespace AML {
 		return Matrix33(rhs);
 	}
 
+	bool operator==(const Matrix33 &lhs, const Matrix33 &rhs){
+		for(int i = 0; i < 3; i++){
+			for(int j = 0; j < 3; j++)
+				if((lhs.data[i][j] - rhs.data[i][j]) > 0.0000001) return false;
+		}
+		return true;
+	}
+
 
 	//stream operator
 	std::ostream& operator<<(std::ostream &os, const Matrix33 &matrix){
+		std::cout << "[";
 		for(int i = 0; i < 3; i++){
-			std::cout << "|";
+			std::cout << " [";
 			for(int j = 0; j < 3; j++)
 				std::cout << " " << matrix.data[i][j];
-			std::cout << "|" << std::endl;
+			std::cout << "] "; 
 		}
+		std::cout << "]";
 		return os;
 	}
 

@@ -37,6 +37,7 @@ namespace AML {
 	};
 
 	//Matrix/Matrix operations
+	bool operator==(const Matrix33 &lhs, const Matrix33 &rhs);
 	Matrix33 operator-(const Matrix33 &rhs);
 	Matrix33 operator+(const Matrix33 &lhs, const Matrix33 &rhs);
 	Matrix33 operator-(const Matrix33 &lhs, const Matrix33 &rhs);

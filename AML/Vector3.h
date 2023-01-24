@@ -51,6 +51,7 @@ namespace AML {
 	Vector3 operator*(double lhs, const Vector3& rhs);
 	Vector3 operator/(double lhs, const Vector3& rhs);
 
+	double invSqrt(float num);
 	void normalize(Vector3& v);
 	double norm(const Vector3& v);
 	Vector3 unit(const Vector3& v);
