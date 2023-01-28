@@ -12,7 +12,7 @@ namespace AML {
 			static const Matrix33 rotationAroundZ(double thai);
 	};
 
-	bool isValidDCM(const Matrix33 dcm);
+	bool isValidDCM(const Matrix33 dcm, double tolerance);
 	void normalizeDCM(Matrix33 &dcm);
 
 	Matrix33 integrateDCM(const Matrix33 &dcm, const Matrix33 &dcmRates, double dt);

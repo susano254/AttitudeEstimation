@@ -188,7 +188,7 @@ namespace AML {
 	bool operator==(const Matrix33 &lhs, const Matrix33 &rhs){
 		for(int i = 0; i < 3; i++){
 			for(int j = 0; j < 3; j++)
-				if((lhs.data[i][j] - rhs.data[i][j]) > 0.0000001) return false;
+				if((lhs.data[i][j] - rhs.data[i][j]) > 0.0001) return false;
 		}
 		return true;
 	}

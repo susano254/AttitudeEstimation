@@ -28,7 +28,7 @@ namespace AML {
 		return Matrix33(data);
 	}
 
-	bool isValidDCM(const Matrix33 dcm){
+	bool isValidDCM(const Matrix33 dcm, double tolerance){
 		double det = determinant(dcm);
 		//first check it's not a negative value
 		if(det <= 0.0) return false;
@@ -37,7 +37,7 @@ namespace AML {
 		//absolute value of the error
 		error = error < 0 ? -error : error;
 		//if greater than the limit then not a valid dcm
-		if(error > std::numeric_limits<float>::epsilon()) return false;
+		if(error > tolerance) return false;
 		//check the matrix * it's transpose is identity matrix
 		if(!(dcm*transpose(dcm) == Matrix33::identity())) return false;
 
@@ -56,15 +56,11 @@ namespace AML {
 		Vector3 orthogonal_y = y_component - 0.5 * error * x_component;
 		Vector3 orthogonal_z = cross(orthogonal_x, orthogonal_y);
 
-		//normalize(orthogonal_x);
-		//normalize(orthogonal_y);
-		//normalize(orthogonal_z);
 		Vector3 x_norm = 0.5 * (3.0 - dot(orthogonal_x, orthogonal_x))* orthogonal_x;
 		Vector3 y_norm = 0.5 * (3.0 - dot(orthogonal_y, orthogonal_y))* orthogonal_y;
 		Vector3 z_norm = 0.5 * (3.0 - dot(orthogonal_z, orthogonal_z))* orthogonal_z;
 
 		Matrix33 temp = dcm;
-		//dcm = Matrix33(orthogonal_x, orthogonal_y, orthogonal_z);
 		dcm = Matrix33(x_norm, y_norm, z_norm);
 	}
 
